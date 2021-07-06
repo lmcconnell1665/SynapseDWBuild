@@ -1,0 +1,99 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "dev-healthcare-analytics"
+        },
+        "location": {
+            "value": "southcentralus"
+        },
+        "defaultDataLakeStorageAccountName": {
+            "value": "devhealthcare"
+        },
+        "defaultDataLakeStorageFilesystemName": {
+            "value": "analytics"
+        },
+        "sqlAdministratorLogin": {
+            "value": "sqladminuser"
+        },
+        "sqlAdministratorLoginPassword": {
+            "value": null
+        },
+        "setWorkspaceIdentityRbacOnStorageAccount": {
+            "value": true
+        },
+        "allowAllConnections": {
+            "value": false
+        },
+        "grantWorkspaceIdentityControlForSql": {
+            "value": "Enabled"
+        },
+        "managedVirtualNetwork": {
+            "value": "default"
+        },
+        "tagValues": {
+            "value": {
+                "env": "dev",
+                "project": "data warehouse"
+            }
+        },
+        "storageSubscriptionID": {
+            "value": "2119a13a-174b-430b-88fd-646fa9b82fd8"
+        },
+        "storageResourceGroupName": {
+            "value": "rg-dev-dw"
+        },
+        "storageLocation": {
+            "value": "southcentralus"
+        },
+        "storageRoleUniqueId": {
+            "value": "278711f2-fc1a-440d-952a-8869e6534011"
+        },
+        "isNewStorageAccount": {
+            "value": true
+        },
+        "isNewFileSystemOnly": {
+            "value": false
+        },
+        "adlaResourceId": {
+            "value": ""
+        },
+        "managedResourceGroupName": {
+            "value": "rg-dev-dw-ancillary"
+        },
+        "storageAccessTier": {
+            "value": "Hot"
+        },
+        "storageAccountType": {
+            "value": "Standard_RAGRS"
+        },
+        "storageSupportsHttpsTrafficOnly": {
+            "value": true
+        },
+        "storageKind": {
+            "value": "StorageV2"
+        },
+        "storageIsHnsEnabled": {
+            "value": true
+        },
+        "userObjectId": {
+            "value": "5825ea2b-b140-4e7e-af12-b9c5d0758e2e"
+        },
+        "setSbdcRbacOnStorageAccount": {
+            "value": true
+        },
+        "setWorkspaceMsiByPassOnStorageAccount": {
+            "value": false
+        },
+        "workspaceStorageAccountProperties": {
+            "value": {}
+        },
+        "managedVirtualNetworkSettings": {
+            "value": {
+                "allowedAadTenantIdsForLinking": [],
+                "preventDataExfiltration": true
+            }
+        }
+    }
+}
