@@ -17,7 +17,7 @@ rg:
 	az group create \
 	--location southcentralus \
 	--name rg-dev-dw-2 \
-	--tags Environment=Dev Project=Data Warehouse
+	--tags Environment="Dev" Project="Data Warehouse"
 
 # Spin up dev resources
 spinup:
