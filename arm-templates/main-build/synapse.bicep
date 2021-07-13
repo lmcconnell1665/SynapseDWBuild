@@ -5,13 +5,15 @@
 //
 // PARAMETERS
 //
-param workspaceName string = 'dev-healthcare-analytics'
+param workspaceName string
 param location string
 param resourceTags object
 param storageAccountName string
-param firewallRuleName string = 'firewall-rule-1'
+param firewallRuleName string
 param firewallAddressRange object
-param sqlAdminUsername string = 'sqladminuser'
+param sqlAdminUsername string
+@secure()
+param sqlAdminPassword string
 
 //
 // VARIABLES
@@ -35,6 +37,7 @@ resource workspace 'Microsoft.Synapse/workspaces@2021-04-01-preview' = {
       filesystem: 'analytics'
     }
     sqlAdministratorLogin: sqlAdminUsername
+    sqlAdministratorLoginPassword: sqlAdminPassword
   }
 }
 

@@ -8,17 +8,24 @@ install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
 
-# Decompile ARM to Bicep
-decompile:
-	az bicep decompile --file arm-templates/synapse-workspace/template.json
-
 # Login to Azure
 login:
 	az login --tenant lbmc.onmicrosoft.com
 
+# Create a new dev resource group
+rg:
+	az group create \
+	--location southcentralus \
+	--name rg-dev-dw-2 \
+	--tags Environment=Dev Project=Data Warehouse
+
 # Spin up dev resources
 spinup:
 	az deployment group create \
-	--resource-group rg-dev-dw \
+	--resource-group rg-dev-dw-2 \
 	--template-file ./arm-templates/main-build/main.bicep \
-	--parameters ./arm-templates/main-build/parameters.json
+	--parameters ./arm-templates/main-build/dev_parameters.json
+
+# Delete the dev resource group
+spindown:
+	az group delete -n rg-dev-dw-2

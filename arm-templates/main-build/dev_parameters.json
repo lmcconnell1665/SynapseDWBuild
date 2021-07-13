@@ -10,7 +10,7 @@
             },
 
         "storageAccountName": {
-            "value": "stgtest0001"
+            "value": "stgdevdw"
         },
 
         "firewallRules": {
@@ -21,7 +21,7 @@
         },
 
         "synapseWorkspaceName": {
-            "value": "wksptest0001"
+            "value": "healthcare-dw"
         },
 
         "firewallRuleName": {
@@ -41,6 +41,14 @@
 
         "sqlAdminUsername": {
             "value": "mcconnellsqladmin"
+        },
+
+        "keyVaultName": {
+            "value": "McConnell-KeyVault"
+        },
+
+        "keyVaultResourceGroup": {
+            "value": "rg-keyvault"
         }
     }
 }

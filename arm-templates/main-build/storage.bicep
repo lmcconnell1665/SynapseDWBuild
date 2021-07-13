@@ -6,7 +6,7 @@
 // PARAMETERS
 //
 @description('the name given to the ADLS Gen2 storage account')
-param storageAccountName string = 'stgdev001'
+param storageAccountName string
 
 @description('the location of the resource group')
 param location string
@@ -22,7 +22,6 @@ param firewallRules object
 //
 var blobServiceName = 'default'
 var sqlLogsContainerName = 'sqllogs'
-var landingZoneContainerName = 'landingzone'
 var bronzeContainerName = 'bronze'
 var silverContainerName = 'silver'
 var goldContainerName = 'gold'
@@ -73,11 +72,6 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01'
 
 resource sqlLogsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
   name: sqlLogsContainerName
-  parent: blobService
-}
-
-resource landingZoneContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
-  name: landingZoneContainerName
   parent: blobService
 }
 
