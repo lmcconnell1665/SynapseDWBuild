@@ -29,4 +29,4 @@ spinup:
 
 # Delete the dev resource group
 spindown:
-	az group delete -n rg-dev-dw-2
+	az group delete -n rg-dev-dw
