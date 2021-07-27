@@ -10,19 +10,20 @@ install:
 
 # Login to Azure
 login:
-	az login --tenant lbmc.onmicrosoft.com
+	az login --tenant lbmc.onmicrosoft.com &&\
+	az account set --subscription "Luke's Visual Studio Enterprise Subscription"
 
 # Create a new dev resource group
 rg:
 	az group create \
-	--location southcentralus \
-	--name rg-dev-dw-2 \
+	--location eastus \
+	--name rg-dev-dw \
 	--tags Environment="Dev" Project="Data Warehouse"
 
 # Spin up dev resources
 spinup:
 	az deployment group create \
-	--resource-group rg-dev-dw-2 \
+	--resource-group rg-dev-dw \
 	--template-file ./arm-templates/main-build/main.bicep \
 	--parameters ./arm-templates/main-build/dev_parameters.json
 

@@ -1,0 +1,76 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceTags": {
+            "value": {
+                "Environment": "Dev",
+                "Project": "Data Warehouse"
+                }
+            },
+
+        "storageAccountName": {
+            "value": "stgdevdw"
+        },
+
+        "firewallRule1": {
+            "value":
+            {
+                "value": "23.117.132.94",
+                "action": "Allow"
+            }
+        },
+
+        "firewallRule2": {
+            "value":
+            {
+                "value": "52.255.179.223",
+                "action": "Allow"
+            }
+        },
+
+        "synapseWorkspaceName": {
+            "value": "dev-datainsights-dw"
+        },
+
+        "firewallRuleName1": {
+            "value": "allowLukeHome"
+        },
+ 
+        "firewallAddressRange1": {
+            "value":
+                {
+                    "startIpAddress": "23.117.132.94",
+                    "endIpAddress": "23.117.132.94"
+                }
+        },
+
+        "firewallRuleName2": {
+            "value": "allowNebulusVM"
+        },
+ 
+        "firewallAddressRange2": {
+            "value":
+                {
+                    "startIpAddress": "52.255.179.223",
+                    "endIpAddress": "52.255.179.223"
+                }
+        },
+
+        "stgBlobContribRoleId": {
+            "value": "ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+        },
+
+        "sqlAdminUsername": {
+            "value": "mcconnellsqladmin"
+        },
+
+        "keyVaultName": {
+            "value": "McConnell-KeyVault"
+        },
+
+        "keyVaultResourceGroup": {
+            "value": "rg-keyvault"
+        }
+    }
+}
