@@ -26,6 +26,7 @@ var sqlLogsContainerName = 'sqllogs'
 var bronzeContainerName = 'bronze'
 var silverContainerName = 'silver'
 var goldContainerName = 'gold'
+var etlControlContainerName = 'etlcontrol'
 
 //
 // RESOURCES
@@ -88,6 +89,11 @@ resource silverContainer 'Microsoft.Storage/storageAccounts/blobServices/contain
 
 resource goldContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
   name: goldContainerName
+  parent: blobService
+}
+
+resource etlControlContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-04-01' = {
+  name: etlControlContainerName
   parent: blobService
 }
 
