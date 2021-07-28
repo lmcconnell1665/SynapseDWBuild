@@ -34,7 +34,8 @@
 						"parameters": {
 							"thisFileName": "AdventureWorks_ControlTable.csv"
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -52,7 +53,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup tables to copy').output",
+						"value": "@activity('Lookup tables to copy').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -119,7 +120,7 @@
 											"type": "Expression"
 										},
 										"thisTableName": {
-											"value": "@item().table.parquet",
+											"value": "@{item().table}.parquet",
 											"type": "Expression"
 										}
 									}
