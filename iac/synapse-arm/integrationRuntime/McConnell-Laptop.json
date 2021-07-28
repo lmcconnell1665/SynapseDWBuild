@@ -1,0 +1,7 @@
+{
+	"name": "McConnell-Laptop",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Luke's LBMC localhost laptop"
+	}
+}
