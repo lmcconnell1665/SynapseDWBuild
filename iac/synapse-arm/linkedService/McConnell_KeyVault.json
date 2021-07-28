@@ -1,0 +1,10 @@
+{
+	"name": "McConnell_KeyVault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://McConnell-KeyVault.vault.azure.net/"
+		}
+	}
+}
