@@ -10,7 +10,10 @@
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "McConnell_KeyVault",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"KeyVaultName": "McConnell-KeyVault-Dev"
+					}
 				},
 				"secretName": "mcconnell-sql-admin-password"
 			}
