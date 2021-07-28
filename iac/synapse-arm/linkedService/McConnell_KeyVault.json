@@ -1,0 +1,16 @@
+{
+	"name": "McConnell_KeyVault",
+	"properties": {
+		"parameters": {
+			"KeyVaultName": {
+				"type": "string",
+				"defaultValue": "McConnell-KeyVault-Dev"
+			}
+		},
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://@linkedService().KeyVaultName.vault.azure.net"
+		}
+	}
+}
