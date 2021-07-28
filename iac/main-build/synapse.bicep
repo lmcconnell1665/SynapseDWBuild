@@ -13,6 +13,8 @@ param firewallRuleName1 string
 param firewallAddressRange1 object
 param firewallRuleName2 string
 param firewallAddressRange2 object
+param firewallRuleName3 string
+param firewallAddressRange3 object
 param sqlAdminUsername string
 @secure()
 param sqlAdminPassword string
@@ -53,6 +55,12 @@ resource firewallRule2 'Microsoft.Synapse/workspaces/firewallRules@2021-04-01-pr
   name: firewallRuleName2
   parent: workspace
   properties: firewallAddressRange2
+}
+
+resource firewallRule3 'Microsoft.Synapse/workspaces/firewallRules@2021-04-01-preview' = {
+  name: firewallRuleName3
+  parent: workspace
+  properties: firewallAddressRange3
 }
 
 //

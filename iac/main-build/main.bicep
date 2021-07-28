@@ -1,12 +1,15 @@
 param resourceTags object
 param firewallRule1 object // for blog storage
 param firewallRule2 object
+param firewallRule3 object
 param storageAccountName string
 param synapseWorkspaceName string
 param firewallRuleName1 string // for synapse workspace
 param firewallAddressRange1 object
 param firewallRuleName2 string
 param firewallAddressRange2 object
+param firewallRuleName3 string
+param firewallAddressRange3 object
 param sqlAdminUsername string
 param needRoleAssignment bool = true
 param stgBlobContribRoleId string
@@ -35,6 +38,8 @@ module synapseModule 'synapse.bicep' = {
     firewallAddressRange1: firewallAddressRange1
     firewallRuleName2: firewallRuleName2
     firewallAddressRange2: firewallAddressRange2
+    firewallRuleName3: firewallRuleName3
+    firewallAddressRange3: firewallAddressRange3
     sqlAdminUsername: sqlAdminUsername
     sqlAdminPassword: kv.getSecret('healthcare-analytics-sql-pw')
   }
@@ -48,6 +53,7 @@ module stgModule 'storage.bicep' = {
     resourceTags: resourceTags
     firewallRule1: firewallRule1
     firewallRule2: firewallRule2
+    firewallRule3: firewallRule3
   }
 }
 

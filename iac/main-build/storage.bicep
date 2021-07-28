@@ -17,6 +17,7 @@ param resourceTags object
 @description('The IP addresses to allow access to the storage account')
 param firewallRule1 object
 param firewallRule2 object
+param firewallRule3 object
 
 //
 // VARIABLES
@@ -48,6 +49,7 @@ resource stgAcct 'Microsoft.Storage/storageAccounts@2021-04-01' = {
       ipRules: [
         firewallRule1
         firewallRule2
+        firewallRule3
       ]
     }
     supportsHttpsTrafficOnly: true

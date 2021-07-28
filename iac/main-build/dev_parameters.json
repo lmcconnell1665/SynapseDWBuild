@@ -29,6 +29,14 @@
             }
         },
 
+        "firewallRule3": {
+            "value":
+            {
+                "value": "8.42.53.250",
+                "action": "Allow"
+            }
+        },
+
         "synapseWorkspaceName": {
             "value": "dev-datainsights-dw"
         },
@@ -54,6 +62,18 @@
                 {
                     "startIpAddress": "52.255.179.223",
                     "endIpAddress": "52.255.179.223"
+                }
+        },
+
+        "firewallRuleName3": {
+            "value": "allowLBMCOffice"
+        },
+ 
+        "firewallAddressRange3": {
+            "value":
+                {
+                    "startIpAddress": "8.42.53.250",
+                    "endIpAddress": "8.42.53.250"
                 }
         },
 
