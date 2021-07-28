@@ -1,0 +1,38 @@
+{
+	"name": "DataLake_Bronze",
+	"properties": {
+		"description": "Parameterized connection to the bronze directory of the workspace data lake",
+		"linkedServiceName": {
+			"referenceName": "dev-datainsights-dw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"thisDataSourceDirectory": {
+				"type": "string",
+				"defaultValue": "AdvWorks"
+			},
+			"thisTableName": {
+				"type": "string",
+				"defaultValue": "DimCurrency"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().thisTableName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().thisDataSourceDirectory",
+					"type": "Expression"
+				},
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
