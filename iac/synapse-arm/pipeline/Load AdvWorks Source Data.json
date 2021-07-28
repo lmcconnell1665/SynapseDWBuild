@@ -116,7 +116,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"thisDataSourceDirectory": {
-											"value": "AdvWorks/@item().schema",
+											"value": "AdvWorks/@{item().schema}",
 											"type": "Expression"
 										},
 										"thisTableName": {
