@@ -24,8 +24,8 @@ rg:
 spinup:
 	az deployment group create \
 	--resource-group rg-dev-dw \
-	--template-file ./arm-templates/main-build/main.bicep \
-	--parameters ./arm-templates/main-build/dev_parameters.json
+	--template-file ./iac/main-build/main.bicep \
+	--parameters ./iac/main-build/dev_parameters.json
 
 # Delete the dev resource group
 spindown:

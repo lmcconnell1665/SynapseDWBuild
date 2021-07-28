@@ -8,12 +8,16 @@ param firewallAddressRange1 object
 param firewallRuleName2 string
 param firewallAddressRange2 object
 param sqlAdminUsername string
-param roleNameGuid string = guid(subscription().id)
+param needRoleAssignment bool = true
 param stgBlobContribRoleId string
+param stgRoleNameGuid string = guid(resourceGroup().id, stgBlobContribRoleId)
+param keyVaultContribRoleId string
 param keyVaultName string
 param keyVaultResourceGroup string
+param keyVaultRoleNameGuid string = guid(resourceGroup().id, keyVaultContribRoleId)
 
-var roleDefinitionId = '/subscriptions/${subscription().subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/${stgBlobContribRoleId}'
+var roleDefinitionId_stg = '/subscriptions/${subscription().subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/${stgBlobContribRoleId}'
+var roleDefinitionId_vault = '/subscriptions/${subscription().subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/${keyVaultContribRoleId}'
 
 resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
   name: keyVaultName
@@ -47,10 +51,20 @@ module stgModule 'storage.bicep' = {
   }
 }
 
-resource stgRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {
-  name: roleNameGuid
+module kvAccess 'kv_access.bicep' = if (needRoleAssignment) {
+  name: 'kvRoleAssignment'
+  scope: resourceGroup(keyVaultResourceGroup)
+  params: {
+    keyVaultRoleNameGuid: keyVaultRoleNameGuid
+    roleDefinitionId_vault: roleDefinitionId_vault
+    synapsePrincipalId: synapseModule.outputs.managedIdentityId
+  }
+}
+
+resource stgRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = if (needRoleAssignment) {
+  name: stgRoleNameGuid
   properties: {
-    roleDefinitionId: roleDefinitionId
+    roleDefinitionId: roleDefinitionId_stg
     principalId: synapseModule.outputs.managedIdentityId
   }
 }
