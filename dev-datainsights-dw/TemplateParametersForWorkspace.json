@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "dev-datainsights-dw"
+		},
+		"AdventureWorks_SourceSQL_connectionString": {
+			"value": ""
+		},
+		"dev-datainsights-dw-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"McConnell_KeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://@linkedService().KeyVaultName.vault.azure.net"
+		},
+		"dev-datainsights-dw-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://stgdevdw.dfs.core.windows.net"
+		}
+	}
+}
