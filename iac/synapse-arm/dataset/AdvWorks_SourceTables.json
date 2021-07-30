@@ -1,0 +1,33 @@
+{
+	"name": "AdvWorks_SourceTables",
+	"properties": {
+		"description": "Parameterized connection to the Adventure Works source tables",
+		"linkedServiceName": {
+			"referenceName": "AdventureWorks_SourceSQL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"thisSchema": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"thisTable": {
+				"type": "string",
+				"defaultValue": "DimCurrency"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().thisSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().thisTable",
+				"type": "Expression"
+			}
+		}
+	}
+}

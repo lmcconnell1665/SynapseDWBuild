@@ -1,0 +1,33 @@
+{
+	"name": "ETL_ControlTables",
+	"properties": {
+		"description": "Parameterized connection to the etl control tables directory in the workspace default storage account",
+		"linkedServiceName": {
+			"referenceName": "dev-datainsights-dw-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"thisFileName": {
+				"type": "string",
+				"defaultValue": "AdventureWorks_ControlTable.csv"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().thisFileName",
+					"type": "Expression"
+				},
+				"fileSystem": "etlcontrol"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

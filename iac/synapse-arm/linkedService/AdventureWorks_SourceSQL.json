@@ -1,0 +1,26 @@
+{
+	"name": "AdventureWorks_SourceSQL",
+	"properties": {
+		"description": "AdventureWorks data warehouse tables stored on the mcconnell Azure SQL DB (serverless instance)",
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=mcconnell.database.windows.net;Initial Catalog=DW;User ID=mcconnell-sql-admin",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "McConnell_KeyVault",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"KeyVaultName": "McConnell-KeyVault-Dev"
+					}
+				},
+				"secretName": "mcconnell-sql-admin-password"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
