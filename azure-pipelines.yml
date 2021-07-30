@@ -16,6 +16,6 @@ steps:
   name: Copy_bicep_files
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: 'main-build/*'
+    Contents: iac/**
     TargetFolder: $(Build.ArtifactStagingDirectory)
     CleanTargetFolder: true
