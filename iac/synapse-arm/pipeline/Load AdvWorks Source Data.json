@@ -1,0 +1,136 @@
+{
+	"name": "Load AdvWorks Source Data",
+	"properties": {
+		"description": "Bulk loads the tables from the DW database on the mcconnell server to the workspace bronze storage",
+		"activities": [
+			{
+				"name": "Lookup tables to copy",
+				"description": "Reference the AdventureWorks_ControlTable from the etlControl directory to see which tables to copy",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ETL_ControlTables",
+						"type": "DatasetReference",
+						"parameters": {
+							"thisFileName": "AdventureWorks_ControlTable.csv"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Copy each table",
+				"description": "Copies each of the tables specified in the previous lookup activity",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup tables to copy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup tables to copy').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy the table",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "AdvWorks_SourceTables",
+									"type": "DatasetReference",
+									"parameters": {
+										"thisSchema": {
+											"value": "@item().schema",
+											"type": "Expression"
+										},
+										"thisTable": {
+											"value": "@item().table",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DataLake_Bronze",
+									"type": "DatasetReference",
+									"parameters": {
+										"thisDataSourceDirectory": {
+											"value": "AdvWorks/@{item().schema}",
+											"type": "Expression"
+										},
+										"thisTableName": {
+											"value": "@{item().table}.parquet",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}
