@@ -16,4 +16,4 @@ Common IAC platforms:
 
 # What is Azure Bicep
 
-Azure Bicep is a domain specific language specifically for controlling Azure infrastructure. It is an abstraction of Azure ARM templates (and decompiles to ARM templates) that provides a much more user friendly experience. It is also a declarative langauge that doesn't require you to maintain a "state" file.
+[Azure Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview#get-started) is a domain specific language specifically for controlling Azure infrastructure. It is an abstraction of Azure ARM templates (and decompiles to ARM templates) that provides a much more user friendly experience. It is also a declarative langauge that doesn't require you to maintain a "state" file.
