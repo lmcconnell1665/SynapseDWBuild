@@ -10,7 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
 # Copy the iac bicep files
 - task: CopyFiles@2
   name: Copy_bicep_files
